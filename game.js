@@ -165,6 +165,11 @@ function endGame() {
   state = STATE.DEAD;
   const score = getScore();
 
+  // Stop engine rumble, play crash impact, then start game-over BGM
+  SoundManager.stopEngine();
+  SoundManager.playCrash();
+  setTimeout(function () { SoundManager.startBGM(); }, 600);
+
   if (score > bestScore) {
     bestScore = score;
     localStorage.setItem('hwdash_best', bestScore);
@@ -256,6 +261,9 @@ function gameLoop(timestamp) {
     // Update player
     player.update(dt, gameSpeed, track);
 
+    // Keep engine pitch in sync with speed
+    SoundManager.updateEngine(player.speedKmh);
+
     // Update track (spawns obstacles, culls old ones)
     track.update(player.y, getScore());
 
@@ -315,8 +323,10 @@ function gameLoop(timestamp) {
 
 overlayBtn.addEventListener('click', () => {
   overlay.classList.remove('visible');
+  SoundManager.stopBGM();
   initGame();
   state = STATE.RACING;
+  SoundManager.startEngine();
 });
 
 // ── Boot ──────────────────────────────────────────────────────
