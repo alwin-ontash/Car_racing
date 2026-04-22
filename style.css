@@ -1,0 +1,110 @@
+/* ── Reset & base ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #111;
+  overflow: hidden;          /* no scrollbars — canvas fills the window */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #fff;
+  user-select: none;         /* prevent text selection during play */
+}
+
+/* ── Canvas ───────────────────────────────────────────────────── */
+#gameCanvas {
+  display: block;
+  /* size is set by game.js to match window */
+}
+
+/* ── HUD ──────────────────────────────────────────────────────── */
+#hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;      /* clicks pass through to canvas */
+  z-index: 10;
+}
+
+#hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+#hud-top span {
+  min-width: 140px;
+  text-align: center;
+}
+
+#hud-score { text-align: left !important; }
+#hud-speed { text-align: right !important; }
+
+/* ── Overlay (start / win / lose screen) ─────────────────────── */
+#overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#overlay-box {
+  background: #1a1a2e;
+  border: 2px solid #e94560;
+  border-radius: 12px;
+  padding: 40px 50px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 0 40px rgba(233, 69, 96, 0.4);
+}
+
+#overlay-title {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: #e94560;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+#overlay-message {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+#overlay-btn {
+  background: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 36px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#overlay-btn:hover  { background: #c73652; }
+#overlay-btn:active { transform: scale(0.97); }

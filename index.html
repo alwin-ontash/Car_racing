@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Highway Dash</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Main canvas — the entire game is drawn here -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- HUD overlay — distance, timer, speed -->
+    <div id="hud">
+      <div id="hud-top">
+        <span id="hud-score">Distance: 0 m</span>
+        <span id="hud-timer">Time: 0.0s</span>
+        <span id="hud-speed">Speed: 0 km/h</span>
+      </div>
+    </div>
+
+    <!-- Overlay shown on game start or crash -->
+    <div id="overlay" class="visible">
+      <div id="overlay-box">
+        <h1 id="overlay-title">HIGHWAY DASH</h1>
+        <p id="overlay-message">Dodge traffic and obstacles!<br />Use Arrow Keys or A / D to steer.</p>
+        <button id="overlay-btn">START</button>
+      </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="input.js"></script>
+    <script src="track.js"></script>
+    <script src="car.js"></script>
+    <script src="aiCar.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
